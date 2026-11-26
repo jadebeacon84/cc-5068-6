@@ -1,0 +1,98 @@
+{
+  "audio_file": "noisy_speech_06_2006.wav",
+  "sample_rate": 16000,
+  "duration_sec": 7.9879,
+  "annotator": "synthetic-reference (machine exact labels; human-reviewable)",
+  "segments": [
+    {
+      "start": 0.368,
+      "end": 1.91,
+      "scheduled_start": 0.204,
+      "speaker": "B",
+      "kind": "speech"
+    },
+    {
+      "start": 2.827,
+      "end": 4.626,
+      "scheduled_start": 2.665,
+      "speaker": "B",
+      "kind": "speech"
+    },
+    {
+      "start": 5.275,
+      "end": 6.665,
+      "scheduled_start": 5.086,
+      "speaker": "B",
+      "kind": "speech"
+    }
+  ],
+  "active_spans_samples": [
+    [
+      5890,
+      12470
+    ],
+    [
+      14762,
+      21845
+    ],
+    [
+      22046,
+      25049
+    ],
+    [
+      26076,
+      30567
+    ],
+    [
+      45224,
+      47927
+    ],
+    [
+      48077,
+      50668
+    ],
+    [
+      54230,
+      61348
+    ],
+    [
+      62987,
+      65519
+    ],
+    [
+      65616,
+      68133
+    ],
+    [
+      68613,
+      72092
+    ],
+    [
+      72660,
+      74016
+    ],
+    [
+      84396,
+      88126
+    ],
+    [
+      88835,
+      91515
+    ],
+    [
+      92981,
+      95843
+    ],
+    [
+      96330,
+      103180
+    ],
+    [
+      103429,
+      106632
+    ]
+  ],
+  "category": "noisy_speech",
+  "seed": 2006,
+  "snr_db": 12.0
+}

@@ -1,0 +1,30 @@
+{
+  "audio_file": "fork_B_silence.wav",
+  "sample_rate": 16000,
+  "duration_sec": 3.2,
+  "annotator": "synthetic-reference (machine exact labels; human-reviewable)",
+  "segments": [
+    {
+      "start": 0.398,
+      "end": 2.077,
+      "speaker": "X",
+      "kind": "speech",
+      "text": "相同前缀里的一句话。"
+    }
+  ],
+  "active_spans_samples": [
+    [
+      6370,
+      9227
+    ],
+    [
+      9738,
+      13570
+    ],
+    [
+      16986,
+      33229
+    ]
+  ],
+  "scenario": "fork: no continuation"
+}

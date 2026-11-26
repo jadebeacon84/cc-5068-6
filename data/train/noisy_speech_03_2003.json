@@ -1,0 +1,67 @@
+{
+  "audio_file": "noisy_speech_03_2003.wav",
+  "sample_rate": 16000,
+  "duration_sec": 5.6785,
+  "annotator": "synthetic-reference (machine exact labels; human-reviewable)",
+  "segments": [
+    {
+      "start": 0.611,
+      "end": 2.121,
+      "scheduled_start": 0.444,
+      "speaker": "A",
+      "kind": "speech"
+    },
+    {
+      "start": 2.531,
+      "end": 4.403,
+      "scheduled_start": 2.367,
+      "speaker": "B",
+      "kind": "speech"
+    }
+  ],
+  "active_spans_samples": [
+    [
+      9778,
+      13773
+    ],
+    [
+      14140,
+      25291
+    ],
+    [
+      25531,
+      28008
+    ],
+    [
+      33013,
+      33943
+    ],
+    [
+      40488,
+      43808
+    ],
+    [
+      44521,
+      47852
+    ],
+    [
+      52227,
+      54634
+    ],
+    [
+      60630,
+      64320
+    ],
+    [
+      64957,
+      67650
+    ],
+    [
+      68460,
+      70442
+    ]
+  ],
+  "category": "noisy_speech",
+  "seed": 2003,
+  "snr_db": 16.0
+}

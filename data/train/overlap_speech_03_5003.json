@@ -1,0 +1,101 @@
+{
+  "audio_file": "overlap_speech_03_5003.wav",
+  "sample_rate": 16000,
+  "duration_sec": 6.0744,
+  "annotator": "synthetic-reference (machine exact labels; human-reviewable)",
+  "segments": [
+    {
+      "start": 0.408,
+      "end": 1.704,
+      "scheduled_start": 0.239,
+      "speaker": "B",
+      "kind": "speech"
+    },
+    {
+      "start": 2.332,
+      "end": 4.253,
+      "scheduled_start": 2.152,
+      "speaker": "A",
+      "kind": "speech"
+    },
+    {
+      "start": 3.103,
+      "end": 4.562,
+      "scheduled_start": 2.955,
+      "speaker": "A",
+      "kind": "speech"
+    },
+    {
+      "start": 3.877,
+      "end": 4.866,
+      "scheduled_start": 3.725,
+      "speaker": "A",
+      "kind": "speech"
+    }
+  ],
+  "active_spans_samples": [
+    [
+      6532,
+      11871
+    ],
+    [
+      12909,
+      15467
+    ],
+    [
+      18787,
+      22356
+    ],
+    [
+      23392,
+      27266
+    ],
+    [
+      37318,
+      48266
+    ],
+    [
+      49432,
+      52847
+    ],
+    [
+      52946,
+      55830
+    ],
+    [
+      59159,
+      61773
+    ],
+    [
+      65233,
+      68048
+    ],
+    [
+      49644,
+      55113
+    ],
+    [
+      60170,
+      66077
+    ],
+    [
+      66937,
+      72991
+    ],
+    [
+      62031,
+      65186
+    ],
+    [
+      65684,
+      68937
+    ],
+    [
+      73040,
+      77862
+    ]
+  ],
+  "category": "overlap_speech",
+  "seed": 5003,
+  "snr_db": null
+}

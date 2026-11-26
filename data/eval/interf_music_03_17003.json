@@ -1,0 +1,9 @@
+{
+  "audio_file": "interf_music_03_17003.wav",
+  "sample_rate": 16000,
+  "duration_sec": 5.9552,
+  "annotator": "synthetic-reference (machine exact labels; human-reviewable)",
+  "segments": [],
+  "category": "interf_music",
+  "seed": 17003
+}

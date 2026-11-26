@@ -1,0 +1,78 @@
+{
+  "audio_file": "breath_gaps_05_6005.wav",
+  "sample_rate": 16000,
+  "duration_sec": 7.2269,
+  "annotator": "synthetic-reference (machine exact labels; human-reviewable)",
+  "segments": [
+    {
+      "start": 0.594,
+      "end": 1.823,
+      "scheduled_start": 0.47,
+      "speaker": "B",
+      "kind": "speech"
+    },
+    {
+      "start": 2.697,
+      "end": 4.244,
+      "scheduled_start": 2.476,
+      "speaker": "B",
+      "kind": "speech"
+    },
+    {
+      "start": 4.711,
+      "end": 6.704,
+      "scheduled_start": 4.54,
+      "speaker": "B",
+      "kind": "speech"
+    }
+  ],
+  "active_spans_samples": [
+    [
+      9507,
+      12950
+    ],
+    [
+      13277,
+      29161
+    ],
+    [
+      43154,
+      45567
+    ],
+    [
+      46927,
+      49381
+    ],
+    [
+      54969,
+      59218
+    ],
+    [
+      59412,
+      67911
+    ],
+    [
+      75371,
+      82211
+    ],
+    [
+      87494,
+      91848
+    ],
+    [
+      91958,
+      95331
+    ],
+    [
+      95796,
+      103321
+    ],
+    [
+      105943,
+      107261
+    ]
+  ],
+  "category": "breath_gaps",
+  "seed": 6005,
+  "snr_db": null
+}

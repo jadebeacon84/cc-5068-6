@@ -1,0 +1,9 @@
+{
+  "audio_file": "music_only.wav",
+  "sample_rate": 16000,
+  "duration_sec": 7.924,
+  "annotator": "synthetic-reference (machine exact labels; human-reviewable)",
+  "segments": [],
+  "category": "interf_music",
+  "seed": 108
+}

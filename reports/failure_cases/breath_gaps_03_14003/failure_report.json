@@ -1,0 +1,76 @@
+{
+  "reasons": "missed_events=3;false_events=1",
+  "metrics": {
+    "clip": "breath_gaps_03_14003.wav",
+    "category": "breath_gaps",
+    "snr_db": null,
+    "duration_sec": 5.4,
+    "exact_voice_sec": 2.87,
+    "silence_ratio": 0.4713,
+    "frame": {
+      "tp": 286,
+      "fp": 60,
+      "fn": 0,
+      "tn": 195,
+      "accuracy": 0.8891,
+      "speech_frame_miss_rate": 0.0,
+      "speech_frame_recall": 1.0,
+      "nonspeech_false_positive_rate": 0.2353,
+      "silence_frame_ratio": 0.4713
+    },
+    "operational": {
+      "missed_voice_sec": 0.0,
+      "voice_miss_rate": 0.0,
+      "false_trigger_sec": 1.116,
+      "false_trigger_ratio_of_clip": 0.2066,
+      "detected_voice_sec": 4.9
+    },
+    "events": {
+      "reference": 3,
+      "phrase_reference": 3,
+      "overlap_unioned": 0,
+      "detected": 1,
+      "matched": 0,
+      "missed_events": 3,
+      "false_events": 1,
+      "split_events": 0,
+      "merged_events": 1,
+      "coverage_covered_refs": 3,
+      "coverage_supported_dets": 1,
+      "coverage_threshold": 0.5
+    },
+    "boundary_core_ms": {
+      "start_mae": null,
+      "end_mae": null,
+      "start_mean_abs": null,
+      "end_mean_abs": null,
+      "start_p95_abs": null,
+      "end_p95_abs": null,
+      "start_bias_signed": null,
+      "end_bias_signed": null
+    },
+    "boundary_delivered_ms": {
+      "start_mean_abs": null,
+      "end_mean_abs": null
+    },
+    "duration_buckets": {
+      "short_lt1s": {
+        "events": 1,
+        "matched": 0,
+        "event_recall": 0.0,
+        "span_miss_rate": 0.0,
+        "start_mae_ms": null,
+        "end_mae_ms": null
+      },
+      "medium_1_2.5s": {
+        "events": 2,
+        "matched": 0,
+        "event_recall": 0.0,
+        "span_miss_rate": 0.059,
+        "start_mae_ms": null,
+        "end_mae_ms": null
+      }
+    },
+    "n_intervals": 1
+  }
+}

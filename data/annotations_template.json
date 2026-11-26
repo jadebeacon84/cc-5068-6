@@ -1,0 +1,22 @@
+{
+  "audio_file": "your_recording.wav",
+  "sample_rate": 16000,
+  "annotator": "human (please replace with your name)",
+  "note": "人工标注模板：复制本文件为与 WAV 同名的 .json，按实际听感填写 segments。start/end 单位为秒；也可改用 start_sample/end_sample（整数采样）。kind 一般填 speech。保存后可用 python3 -m vad_analyzer analyze your_recording.wav --annotation your_recording.json 评估漏检。",
+  "segments": [
+    {
+      "start": 0.0,
+      "end": 1.5,
+      "kind": "speech",
+      "speaker": "A",
+      "text": "第一句话……"
+    },
+    {
+      "start": 2.1,
+      "end": 3.8,
+      "kind": "speech",
+      "speaker": "B",
+      "text": "第二句话……"
+    }
+  ]
+}

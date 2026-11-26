@@ -1,0 +1,67 @@
+{
+  "audio_file": "music_speech_01_8001.wav",
+  "sample_rate": 16000,
+  "duration_sec": 6.73,
+  "annotator": "synthetic-reference (machine exact labels; human-reviewable)",
+  "segments": [
+    {
+      "start": 0.614,
+      "end": 2.573,
+      "scheduled_start": 0.434,
+      "speaker": "A",
+      "kind": "speech"
+    },
+    {
+      "start": 3.491,
+      "end": 5.248,
+      "scheduled_start": 3.27,
+      "speaker": "B",
+      "kind": "speech"
+    }
+  ],
+  "active_spans_samples": [
+    [
+      9820,
+      13357
+    ],
+    [
+      14196,
+      18171
+    ],
+    [
+      22037,
+      31532
+    ],
+    [
+      32257,
+      34862
+    ],
+    [
+      39849,
+      41166
+    ],
+    [
+      55849,
+      62190
+    ],
+    [
+      67280,
+      69961
+    ],
+    [
+      70577,
+      76006
+    ],
+    [
+      77691,
+      80634
+    ],
+    [
+      80676,
+      83972
+    ]
+  ],
+  "category": "music_speech",
+  "seed": 8001,
+  "snr_db": 6.0
+}

@@ -1,0 +1,9 @@
+{
+  "audio_file": "interf_wind_04_11004.wav",
+  "sample_rate": 16000,
+  "duration_sec": 8.2073,
+  "annotator": "synthetic-reference (machine exact labels; human-reviewable)",
+  "segments": [],
+  "category": "interf_wind",
+  "seed": 11004
+}

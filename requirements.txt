@@ -1,0 +1,13 @@
+# Core dependency (frame features + local logistic model + metrics)
+numpy>=1.24
+
+# GUI needs Tk. On Debian/Ubuntu the interpreter binding is a system package:
+#   sudo apt install python3-tk
+# The repository can also fall back to a locally unpacked .extradeps (run_gui.sh).
+
+# Optional real-time playback backends (otherwise system CLI players are used):
+#   pip install sounddevice
+#   pip install simpleaudio
+# Debian/Ubuntu CLI players / audio:
+#   sudo apt install pulseaudio-utils     # provides paplay
+#   sudo apt install alsa-utils           # provides aplay

@@ -1,0 +1,582 @@
+{
+  "name": "train",
+  "sample_rate": 16000,
+  "clips": [
+    {
+      "stem": "clean_speech_00_1000",
+      "wav": "clean_speech_00_1000.wav",
+      "annotation": "clean_speech_00_1000.json",
+      "category": "clean_speech",
+      "snr_db": null,
+      "seed": 1000
+    },
+    {
+      "stem": "clean_speech_01_1001",
+      "wav": "clean_speech_01_1001.wav",
+      "annotation": "clean_speech_01_1001.json",
+      "category": "clean_speech",
+      "snr_db": null,
+      "seed": 1001
+    },
+    {
+      "stem": "clean_speech_02_1002",
+      "wav": "clean_speech_02_1002.wav",
+      "annotation": "clean_speech_02_1002.json",
+      "category": "clean_speech",
+      "snr_db": null,
+      "seed": 1002
+    },
+    {
+      "stem": "clean_speech_03_1003",
+      "wav": "clean_speech_03_1003.wav",
+      "annotation": "clean_speech_03_1003.json",
+      "category": "clean_speech",
+      "snr_db": null,
+      "seed": 1003
+    },
+    {
+      "stem": "clean_speech_04_1004",
+      "wav": "clean_speech_04_1004.wav",
+      "annotation": "clean_speech_04_1004.json",
+      "category": "clean_speech",
+      "snr_db": null,
+      "seed": 1004
+    },
+    {
+      "stem": "clean_speech_05_1005",
+      "wav": "clean_speech_05_1005.wav",
+      "annotation": "clean_speech_05_1005.json",
+      "category": "clean_speech",
+      "snr_db": null,
+      "seed": 1005
+    },
+    {
+      "stem": "clean_speech_06_1006",
+      "wav": "clean_speech_06_1006.wav",
+      "annotation": "clean_speech_06_1006.json",
+      "category": "clean_speech",
+      "snr_db": null,
+      "seed": 1006
+    },
+    {
+      "stem": "clean_speech_07_1007",
+      "wav": "clean_speech_07_1007.wav",
+      "annotation": "clean_speech_07_1007.json",
+      "category": "clean_speech",
+      "snr_db": null,
+      "seed": 1007
+    },
+    {
+      "stem": "noisy_speech_00_2000",
+      "wav": "noisy_speech_00_2000.wav",
+      "annotation": "noisy_speech_00_2000.json",
+      "category": "noisy_speech",
+      "snr_db": 8.0,
+      "seed": 2000
+    },
+    {
+      "stem": "noisy_speech_01_2001",
+      "wav": "noisy_speech_01_2001.wav",
+      "annotation": "noisy_speech_01_2001.json",
+      "category": "noisy_speech",
+      "snr_db": 8.0,
+      "seed": 2001
+    },
+    {
+      "stem": "noisy_speech_02_2002",
+      "wav": "noisy_speech_02_2002.wav",
+      "annotation": "noisy_speech_02_2002.json",
+      "category": "noisy_speech",
+      "snr_db": 8.0,
+      "seed": 2002
+    },
+    {
+      "stem": "noisy_speech_03_2003",
+      "wav": "noisy_speech_03_2003.wav",
+      "annotation": "noisy_speech_03_2003.json",
+      "category": "noisy_speech",
+      "snr_db": 16.0,
+      "seed": 2003
+    },
+    {
+      "stem": "noisy_speech_04_2004",
+      "wav": "noisy_speech_04_2004.wav",
+      "annotation": "noisy_speech_04_2004.json",
+      "category": "noisy_speech",
+      "snr_db": 12.0,
+      "seed": 2004
+    },
+    {
+      "stem": "noisy_speech_05_2005",
+      "wav": "noisy_speech_05_2005.wav",
+      "annotation": "noisy_speech_05_2005.json",
+      "category": "noisy_speech",
+      "snr_db": 12.0,
+      "seed": 2005
+    },
+    {
+      "stem": "noisy_speech_06_2006",
+      "wav": "noisy_speech_06_2006.wav",
+      "annotation": "noisy_speech_06_2006.json",
+      "category": "noisy_speech",
+      "snr_db": 12.0,
+      "seed": 2006
+    },
+    {
+      "stem": "noisy_speech_07_2007",
+      "wav": "noisy_speech_07_2007.wav",
+      "annotation": "noisy_speech_07_2007.json",
+      "category": "noisy_speech",
+      "snr_db": 8.0,
+      "seed": 2007
+    },
+    {
+      "stem": "low_snr_speech_00_3000",
+      "wav": "low_snr_speech_00_3000.wav",
+      "annotation": "low_snr_speech_00_3000.json",
+      "category": "low_snr_speech",
+      "snr_db": -2.0,
+      "seed": 3000
+    },
+    {
+      "stem": "low_snr_speech_01_3001",
+      "wav": "low_snr_speech_01_3001.wav",
+      "annotation": "low_snr_speech_01_3001.json",
+      "category": "low_snr_speech",
+      "snr_db": 2.0,
+      "seed": 3001
+    },
+    {
+      "stem": "low_snr_speech_02_3002",
+      "wav": "low_snr_speech_02_3002.wav",
+      "annotation": "low_snr_speech_02_3002.json",
+      "category": "low_snr_speech",
+      "snr_db": -2.0,
+      "seed": 3002
+    },
+    {
+      "stem": "low_snr_speech_03_3003",
+      "wav": "low_snr_speech_03_3003.wav",
+      "annotation": "low_snr_speech_03_3003.json",
+      "category": "low_snr_speech",
+      "snr_db": -2.0,
+      "seed": 3003
+    },
+    {
+      "stem": "low_snr_speech_04_3004",
+      "wav": "low_snr_speech_04_3004.wav",
+      "annotation": "low_snr_speech_04_3004.json",
+      "category": "low_snr_speech",
+      "snr_db": -2.0,
+      "seed": 3004
+    },
+    {
+      "stem": "low_snr_speech_05_3005",
+      "wav": "low_snr_speech_05_3005.wav",
+      "annotation": "low_snr_speech_05_3005.json",
+      "category": "low_snr_speech",
+      "snr_db": 5.0,
+      "seed": 3005
+    },
+    {
+      "stem": "low_snr_speech_06_3006",
+      "wav": "low_snr_speech_06_3006.wav",
+      "annotation": "low_snr_speech_06_3006.json",
+      "category": "low_snr_speech",
+      "snr_db": -2.0,
+      "seed": 3006
+    },
+    {
+      "stem": "low_snr_speech_07_3007",
+      "wav": "low_snr_speech_07_3007.wav",
+      "annotation": "low_snr_speech_07_3007.json",
+      "category": "low_snr_speech",
+      "snr_db": -2.0,
+      "seed": 3007
+    },
+    {
+      "stem": "music_speech_00_4000",
+      "wav": "music_speech_00_4000.wav",
+      "annotation": "music_speech_00_4000.json",
+      "category": "music_speech",
+      "snr_db": 14.0,
+      "seed": 4000
+    },
+    {
+      "stem": "music_speech_01_4001",
+      "wav": "music_speech_01_4001.wav",
+      "annotation": "music_speech_01_4001.json",
+      "category": "music_speech",
+      "snr_db": 10.0,
+      "seed": 4001
+    },
+    {
+      "stem": "music_speech_02_4002",
+      "wav": "music_speech_02_4002.wav",
+      "annotation": "music_speech_02_4002.json",
+      "category": "music_speech",
+      "snr_db": 14.0,
+      "seed": 4002
+    },
+    {
+      "stem": "music_speech_03_4003",
+      "wav": "music_speech_03_4003.wav",
+      "annotation": "music_speech_03_4003.json",
+      "category": "music_speech",
+      "snr_db": 6.0,
+      "seed": 4003
+    },
+    {
+      "stem": "music_speech_04_4004",
+      "wav": "music_speech_04_4004.wav",
+      "annotation": "music_speech_04_4004.json",
+      "category": "music_speech",
+      "snr_db": 14.0,
+      "seed": 4004
+    },
+    {
+      "stem": "music_speech_05_4005",
+      "wav": "music_speech_05_4005.wav",
+      "annotation": "music_speech_05_4005.json",
+      "category": "music_speech",
+      "snr_db": 6.0,
+      "seed": 4005
+    },
+    {
+      "stem": "music_speech_06_4006",
+      "wav": "music_speech_06_4006.wav",
+      "annotation": "music_speech_06_4006.json",
+      "category": "music_speech",
+      "snr_db": 14.0,
+      "seed": 4006
+    },
+    {
+      "stem": "music_speech_07_4007",
+      "wav": "music_speech_07_4007.wav",
+      "annotation": "music_speech_07_4007.json",
+      "category": "music_speech",
+      "snr_db": 10.0,
+      "seed": 4007
+    },
+    {
+      "stem": "overlap_speech_00_5000",
+      "wav": "overlap_speech_00_5000.wav",
+      "annotation": "overlap_speech_00_5000.json",
+      "category": "overlap_speech",
+      "snr_db": null,
+      "seed": 5000
+    },
+    {
+      "stem": "overlap_speech_01_5001",
+      "wav": "overlap_speech_01_5001.wav",
+      "annotation": "overlap_speech_01_5001.json",
+      "category": "overlap_speech",
+      "snr_db": null,
+      "seed": 5001
+    },
+    {
+      "stem": "overlap_speech_02_5002",
+      "wav": "overlap_speech_02_5002.wav",
+      "annotation": "overlap_speech_02_5002.json",
+      "category": "overlap_speech",
+      "snr_db": null,
+      "seed": 5002
+    },
+    {
+      "stem": "overlap_speech_03_5003",
+      "wav": "overlap_speech_03_5003.wav",
+      "annotation": "overlap_speech_03_5003.json",
+      "category": "overlap_speech",
+      "snr_db": null,
+      "seed": 5003
+    },
+    {
+      "stem": "overlap_speech_04_5004",
+      "wav": "overlap_speech_04_5004.wav",
+      "annotation": "overlap_speech_04_5004.json",
+      "category": "overlap_speech",
+      "snr_db": null,
+      "seed": 5004
+    },
+    {
+      "stem": "overlap_speech_05_5005",
+      "wav": "overlap_speech_05_5005.wav",
+      "annotation": "overlap_speech_05_5005.json",
+      "category": "overlap_speech",
+      "snr_db": null,
+      "seed": 5005
+    },
+    {
+      "stem": "overlap_speech_06_5006",
+      "wav": "overlap_speech_06_5006.wav",
+      "annotation": "overlap_speech_06_5006.json",
+      "category": "overlap_speech",
+      "snr_db": null,
+      "seed": 5006
+    },
+    {
+      "stem": "overlap_speech_07_5007",
+      "wav": "overlap_speech_07_5007.wav",
+      "annotation": "overlap_speech_07_5007.json",
+      "category": "overlap_speech",
+      "snr_db": null,
+      "seed": 5007
+    },
+    {
+      "stem": "breath_gaps_00_6000",
+      "wav": "breath_gaps_00_6000.wav",
+      "annotation": "breath_gaps_00_6000.json",
+      "category": "breath_gaps",
+      "snr_db": null,
+      "seed": 6000
+    },
+    {
+      "stem": "breath_gaps_01_6001",
+      "wav": "breath_gaps_01_6001.wav",
+      "annotation": "breath_gaps_01_6001.json",
+      "category": "breath_gaps",
+      "snr_db": null,
+      "seed": 6001
+    },
+    {
+      "stem": "breath_gaps_02_6002",
+      "wav": "breath_gaps_02_6002.wav",
+      "annotation": "breath_gaps_02_6002.json",
+      "category": "breath_gaps",
+      "snr_db": null,
+      "seed": 6002
+    },
+    {
+      "stem": "breath_gaps_03_6003",
+      "wav": "breath_gaps_03_6003.wav",
+      "annotation": "breath_gaps_03_6003.json",
+      "category": "breath_gaps",
+      "snr_db": null,
+      "seed": 6003
+    },
+    {
+      "stem": "breath_gaps_04_6004",
+      "wav": "breath_gaps_04_6004.wav",
+      "annotation": "breath_gaps_04_6004.json",
+      "category": "breath_gaps",
+      "snr_db": null,
+      "seed": 6004
+    },
+    {
+      "stem": "breath_gaps_05_6005",
+      "wav": "breath_gaps_05_6005.wav",
+      "annotation": "breath_gaps_05_6005.json",
+      "category": "breath_gaps",
+      "snr_db": null,
+      "seed": 6005
+    },
+    {
+      "stem": "breath_gaps_06_6006",
+      "wav": "breath_gaps_06_6006.wav",
+      "annotation": "breath_gaps_06_6006.json",
+      "category": "breath_gaps",
+      "snr_db": null,
+      "seed": 6006
+    },
+    {
+      "stem": "breath_gaps_07_6007",
+      "wav": "breath_gaps_07_6007.wav",
+      "annotation": "breath_gaps_07_6007.json",
+      "category": "breath_gaps",
+      "snr_db": null,
+      "seed": 6007
+    },
+    {
+      "stem": "interf_wind_00_7000",
+      "wav": "interf_wind_00_7000.wav",
+      "annotation": "interf_wind_00_7000.json",
+      "category": "interf_wind",
+      "snr_db": null,
+      "seed": 7000
+    },
+    {
+      "stem": "interf_wind_01_7001",
+      "wav": "interf_wind_01_7001.wav",
+      "annotation": "interf_wind_01_7001.json",
+      "category": "interf_wind",
+      "snr_db": null,
+      "seed": 7001
+    },
+    {
+      "stem": "interf_wind_02_7002",
+      "wav": "interf_wind_02_7002.wav",
+      "annotation": "interf_wind_02_7002.json",
+      "category": "interf_wind",
+      "snr_db": null,
+      "seed": 7002
+    },
+    {
+      "stem": "interf_wind_03_7003",
+      "wav": "interf_wind_03_7003.wav",
+      "annotation": "interf_wind_03_7003.json",
+      "category": "interf_wind",
+      "snr_db": null,
+      "seed": 7003
+    },
+    {
+      "stem": "interf_wind_04_7004",
+      "wav": "interf_wind_04_7004.wav",
+      "annotation": "interf_wind_04_7004.json",
+      "category": "interf_wind",
+      "snr_db": null,
+      "seed": 7004
+    },
+    {
+      "stem": "interf_wind_05_7005",
+      "wav": "interf_wind_05_7005.wav",
+      "annotation": "interf_wind_05_7005.json",
+      "category": "interf_wind",
+      "snr_db": null,
+      "seed": 7005
+    },
+    {
+      "stem": "interf_wind_06_7006",
+      "wav": "interf_wind_06_7006.wav",
+      "annotation": "interf_wind_06_7006.json",
+      "category": "interf_wind",
+      "snr_db": null,
+      "seed": 7006
+    },
+    {
+      "stem": "interf_wind_07_7007",
+      "wav": "interf_wind_07_7007.wav",
+      "annotation": "interf_wind_07_7007.json",
+      "category": "interf_wind",
+      "snr_db": null,
+      "seed": 7007
+    },
+    {
+      "stem": "interf_keyboard_00_8000",
+      "wav": "interf_keyboard_00_8000.wav",
+      "annotation": "interf_keyboard_00_8000.json",
+      "category": "interf_keyboard",
+      "snr_db": null,
+      "seed": 8000
+    },
+    {
+      "stem": "interf_keyboard_01_8001",
+      "wav": "interf_keyboard_01_8001.wav",
+      "annotation": "interf_keyboard_01_8001.json",
+      "category": "interf_keyboard",
+      "snr_db": null,
+      "seed": 8001
+    },
+    {
+      "stem": "interf_keyboard_02_8002",
+      "wav": "interf_keyboard_02_8002.wav",
+      "annotation": "interf_keyboard_02_8002.json",
+      "category": "interf_keyboard",
+      "snr_db": null,
+      "seed": 8002
+    },
+    {
+      "stem": "interf_keyboard_03_8003",
+      "wav": "interf_keyboard_03_8003.wav",
+      "annotation": "interf_keyboard_03_8003.json",
+      "category": "interf_keyboard",
+      "snr_db": null,
+      "seed": 8003
+    },
+    {
+      "stem": "interf_keyboard_04_8004",
+      "wav": "interf_keyboard_04_8004.wav",
+      "annotation": "interf_keyboard_04_8004.json",
+      "category": "interf_keyboard",
+      "snr_db": null,
+      "seed": 8004
+    },
+    {
+      "stem": "interf_keyboard_05_8005",
+      "wav": "interf_keyboard_05_8005.wav",
+      "annotation": "interf_keyboard_05_8005.json",
+      "category": "interf_keyboard",
+      "snr_db": null,
+      "seed": 8005
+    },
+    {
+      "stem": "interf_keyboard_06_8006",
+      "wav": "interf_keyboard_06_8006.wav",
+      "annotation": "interf_keyboard_06_8006.json",
+      "category": "interf_keyboard",
+      "snr_db": null,
+      "seed": 8006
+    },
+    {
+      "stem": "interf_keyboard_07_8007",
+      "wav": "interf_keyboard_07_8007.wav",
+      "annotation": "interf_keyboard_07_8007.json",
+      "category": "interf_keyboard",
+      "snr_db": null,
+      "seed": 8007
+    },
+    {
+      "stem": "interf_music_00_9000",
+      "wav": "interf_music_00_9000.wav",
+      "annotation": "interf_music_00_9000.json",
+      "category": "interf_music",
+      "snr_db": null,
+      "seed": 9000
+    },
+    {
+      "stem": "interf_music_01_9001",
+      "wav": "interf_music_01_9001.wav",
+      "annotation": "interf_music_01_9001.json",
+      "category": "interf_music",
+      "snr_db": null,
+      "seed": 9001
+    },
+    {
+      "stem": "interf_music_02_9002",
+      "wav": "interf_music_02_9002.wav",
+      "annotation": "interf_music_02_9002.json",
+      "category": "interf_music",
+      "snr_db": null,
+      "seed": 9002
+    },
+    {
+      "stem": "interf_music_03_9003",
+      "wav": "interf_music_03_9003.wav",
+      "annotation": "interf_music_03_9003.json",
+      "category": "interf_music",
+      "snr_db": null,
+      "seed": 9003
+    },
+    {
+      "stem": "interf_music_04_9004",
+      "wav": "interf_music_04_9004.wav",
+      "annotation": "interf_music_04_9004.json",
+      "category": "interf_music",
+      "snr_db": null,
+      "seed": 9004
+    },
+    {
+      "stem": "interf_music_05_9005",
+      "wav": "interf_music_05_9005.wav",
+      "annotation": "interf_music_05_9005.json",
+      "category": "interf_music",
+      "snr_db": null,
+      "seed": 9005
+    },
+    {
+      "stem": "interf_music_06_9006",
+      "wav": "interf_music_06_9006.wav",
+      "annotation": "interf_music_06_9006.json",
+      "category": "interf_music",
+      "snr_db": null,
+      "seed": 9006
+    },
+    {
+      "stem": "interf_music_07_9007",
+      "wav": "interf_music_07_9007.wav",
+      "annotation": "interf_music_07_9007.json",
+      "category": "interf_music",
+      "snr_db": null,
+      "seed": 9007
+    }
+  ]
+}

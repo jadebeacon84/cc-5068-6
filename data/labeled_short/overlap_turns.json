@@ -1,0 +1,51 @@
+{
+  "audio_file": "overlap_turns.wav",
+  "sample_rate": 16000,
+  "duration_sec": 5.1399,
+  "annotator": "synthetic-reference (machine exact labels; human-reviewable)",
+  "segments": [
+    {
+      "start": 0.511,
+      "end": 1.835,
+      "scheduled_start": 0.376,
+      "speaker": "B",
+      "kind": "speech"
+    },
+    {
+      "start": 2.421,
+      "end": 3.412,
+      "scheduled_start": 2.204,
+      "speaker": "A",
+      "kind": "speech"
+    }
+  ],
+  "active_spans_samples": [
+    [
+      8172,
+      15198
+    ],
+    [
+      15199,
+      18076
+    ],
+    [
+      18657,
+      21889
+    ],
+    [
+      26546,
+      29357
+    ],
+    [
+      38733,
+      44775
+    ],
+    [
+      48530,
+      54585
+    ]
+  ],
+  "category": "overlap_speech",
+  "seed": 102,
+  "snr_db": null
+}

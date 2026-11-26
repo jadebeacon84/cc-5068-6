@@ -1,0 +1,67 @@
+{
+  "audio_file": "clean_speech_05_1005.wav",
+  "sample_rate": 16000,
+  "duration_sec": 4.8289,
+  "annotator": "synthetic-reference (machine exact labels; human-reviewable)",
+  "segments": [
+    {
+      "start": 0.697,
+      "end": 2.365,
+      "scheduled_start": 0.479,
+      "speaker": "A",
+      "kind": "speech"
+    },
+    {
+      "start": 3.175,
+      "end": 4.845,
+      "scheduled_start": 2.962,
+      "speaker": "B",
+      "kind": "speech"
+    }
+  ],
+  "active_spans_samples": [
+    [
+      11145,
+      13402
+    ],
+    [
+      15920,
+      20189
+    ],
+    [
+      23481,
+      26340
+    ],
+    [
+      27462,
+      33911
+    ],
+    [
+      34987,
+      37841
+    ],
+    [
+      50792,
+      58817
+    ],
+    [
+      63568,
+      66077
+    ],
+    [
+      66736,
+      69758
+    ],
+    [
+      73476,
+      76541
+    ],
+    [
+      77161,
+      77514
+    ]
+  ],
+  "category": "clean_speech",
+  "seed": 1005,
+  "snr_db": null
+}

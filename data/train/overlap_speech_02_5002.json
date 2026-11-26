@@ -1,0 +1,59 @@
+{
+  "audio_file": "overlap_speech_02_5002.wav",
+  "sample_rate": 16000,
+  "duration_sec": 6.3063,
+  "annotator": "synthetic-reference (machine exact labels; human-reviewable)",
+  "segments": [
+    {
+      "start": 0.648,
+      "end": 1.732,
+      "scheduled_start": 0.43,
+      "speaker": "A",
+      "kind": "speech"
+    },
+    {
+      "start": 2.423,
+      "end": 4.466,
+      "scheduled_start": 2.254,
+      "speaker": "B",
+      "kind": "speech"
+    }
+  ],
+  "active_spans_samples": [
+    [
+      10369,
+      13425
+    ],
+    [
+      13668,
+      23612
+    ],
+    [
+      27115,
+      27717
+    ],
+    [
+      38773,
+      45145
+    ],
+    [
+      49754,
+      52498
+    ],
+    [
+      58596,
+      66228
+    ],
+    [
+      67256,
+      69647
+    ],
+    [
+      70995,
+      71462
+    ]
+  ],
+  "category": "overlap_speech",
+  "seed": 5002,
+  "snr_db": null
+}

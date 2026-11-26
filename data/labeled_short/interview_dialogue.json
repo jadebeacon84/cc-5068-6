@@ -1,0 +1,167 @@
+{
+  "audio_file": "interview_dialogue.wav",
+  "sample_rate": 16000,
+  "duration_sec": 11.2,
+  "annotator": "synthetic-reference (machine exact labels; human-reviewable)",
+  "segments": [
+    {
+      "start": 0.667,
+      "end": 2.487,
+      "speaker": "A",
+      "kind": "speech",
+      "text": "今天我们聊一下语音区间。"
+    },
+    {
+      "start": 3.107,
+      "end": 4.327,
+      "speaker": "B",
+      "kind": "speech",
+      "text": "好的，我最关心剪辑点会不会切错。"
+    },
+    {
+      "start": 4.521,
+      "end": 4.934,
+      "speaker": "A",
+      "kind": "speech",
+      "text": "对。"
+    },
+    {
+      "start": 4.331,
+      "end": 4.951,
+      "speaker": "B",
+      "kind": "speech",
+      "text": "就是这样。"
+    },
+    {
+      "start": 5.517,
+      "end": 6.658,
+      "speaker": "A",
+      "kind": "speech",
+      "text": "所以进入和退出证据要分开。"
+    },
+    {
+      "start": 7.092,
+      "end": 7.971,
+      "speaker": "B",
+      "kind": "speech",
+      "text": "尾音其实很轻。"
+    },
+    {
+      "start": 8.258,
+      "end": 8.585,
+      "speaker": "B",
+      "kind": "speech",
+      "text": "嗯……"
+    },
+    {
+      "start": 9.745,
+      "end": 10.968,
+      "speaker": "A",
+      "kind": "speech",
+      "text": "这些干扰都不能只靠音量判断。"
+    }
+  ],
+  "active_spans_samples": [
+    [
+      10671,
+      13395
+    ],
+    [
+      14571,
+      21143
+    ],
+    [
+      21846,
+      25153
+    ],
+    [
+      26311,
+      29187
+    ],
+    [
+      33582,
+      36903
+    ],
+    [
+      39329,
+      39797
+    ],
+    [
+      49714,
+      57304
+    ],
+    [
+      58287,
+      65936
+    ],
+    [
+      66053,
+      69227
+    ],
+    [
+      72336,
+      75461
+    ],
+    [
+      75867,
+      78952
+    ],
+    [
+      69288,
+      76087
+    ],
+    [
+      76272,
+      79215
+    ],
+    [
+      88274,
+      92436
+    ],
+    [
+      92850,
+      99891
+    ],
+    [
+      104211,
+      106529
+    ],
+    [
+      113471,
+      117387
+    ],
+    [
+      117975,
+      123667
+    ],
+    [
+      123789,
+      127535
+    ],
+    [
+      132134,
+      134460
+    ],
+    [
+      135642,
+      137353
+    ],
+    [
+      155923,
+      162984
+    ],
+    [
+      163607,
+      166881
+    ],
+    [
+      166887,
+      170178
+    ],
+    [
+      170738,
+      175492
+    ]
+  ],
+  "scenario": "two-speaker dialogue with breath overlap and music-masked tail"
+}

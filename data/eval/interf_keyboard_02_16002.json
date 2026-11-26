@@ -1,0 +1,9 @@
+{
+  "audio_file": "interf_keyboard_02_16002.wav",
+  "sample_rate": 16000,
+  "duration_sec": 5.9805,
+  "annotator": "synthetic-reference (machine exact labels; human-reviewable)",
+  "segments": [],
+  "category": "interf_keyboard",
+  "seed": 16002
+}

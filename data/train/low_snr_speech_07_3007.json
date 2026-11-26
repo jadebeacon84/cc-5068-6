@@ -1,0 +1,86 @@
+{
+  "audio_file": "low_snr_speech_07_3007.wav",
+  "sample_rate": 16000,
+  "duration_sec": 6.2844,
+  "annotator": "synthetic-reference (machine exact labels; human-reviewable)",
+  "segments": [
+    {
+      "start": 0.51,
+      "end": 1.895,
+      "scheduled_start": 0.295,
+      "speaker": "B",
+      "kind": "speech"
+    },
+    {
+      "start": 2.848,
+      "end": 3.771,
+      "scheduled_start": 2.683,
+      "speaker": "B",
+      "kind": "speech"
+    },
+    {
+      "start": 4.234,
+      "end": 5.754,
+      "scheduled_start": 4.11,
+      "speaker": "A",
+      "kind": "speech"
+    }
+  ],
+  "active_spans_samples": [
+    [
+      8159,
+      10623
+    ],
+    [
+      10953,
+      14116
+    ],
+    [
+      14125,
+      17081
+    ],
+    [
+      17706,
+      26167
+    ],
+    [
+      27469,
+      30314
+    ],
+    [
+      45570,
+      47916
+    ],
+    [
+      48442,
+      54345
+    ],
+    [
+      59320,
+      60340
+    ],
+    [
+      67746,
+      70733
+    ],
+    [
+      71801,
+      74936
+    ],
+    [
+      80926,
+      83977
+    ],
+    [
+      84867,
+      87733
+    ],
+    [
+      89451,
+      92069
+    ]
+  ],
+  "category": "low_snr_speech",
+  "seed": 3007,
+  "snr_db": -2.0
+}

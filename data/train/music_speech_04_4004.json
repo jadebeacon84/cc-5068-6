@@ -1,0 +1,94 @@
+{
+  "audio_file": "music_speech_04_4004.wav",
+  "sample_rate": 16000,
+  "duration_sec": 7.7133,
+  "annotator": "synthetic-reference (machine exact labels; human-reviewable)",
+  "segments": [
+    {
+      "start": 0.529,
+      "end": 2.209,
+      "scheduled_start": 0.31,
+      "speaker": "A",
+      "kind": "speech"
+    },
+    {
+      "start": 2.642,
+      "end": 4.622,
+      "scheduled_start": 2.432,
+      "speaker": "A",
+      "kind": "speech"
+    },
+    {
+      "start": 5.167,
+      "end": 6.784,
+      "scheduled_start": 4.943,
+      "speaker": "B",
+      "kind": "speech"
+    }
+  ],
+  "active_spans_samples": [
+    [
+      8471,
+      17802
+    ],
+    [
+      18552,
+      21660
+    ],
+    [
+      26568,
+      28950
+    ],
+    [
+      30637,
+      35340
+    ],
+    [
+      42279,
+      49286
+    ],
+    [
+      52753,
+      54949
+    ],
+    [
+      56160,
+      59158
+    ],
+    [
+      60359,
+      63115
+    ],
+    [
+      64145,
+      68001
+    ],
+    [
+      68088,
+      73952
+    ],
+    [
+      82673,
+      91106
+    ],
+    [
+      94566,
+      97152
+    ],
+    [
+      98937,
+      101524
+    ],
+    [
+      101987,
+      105172
+    ],
+    [
+      105808,
+      108549
+    ]
+  ],
+  "category": "music_speech",
+  "seed": 4004,
+  "snr_db": 14.0
+}

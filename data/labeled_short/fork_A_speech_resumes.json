@@ -1,0 +1,45 @@
+{
+  "audio_file": "fork_A_speech_resumes.wav",
+  "sample_rate": 16000,
+  "duration_sec": 3.2,
+  "annotator": "synthetic-reference (machine exact labels; human-reviewable)",
+  "segments": [
+    {
+      "start": 0.398,
+      "end": 2.077,
+      "speaker": "X",
+      "kind": "speech",
+      "text": "相同前缀里的一句话。"
+    },
+    {
+      "start": 2.6,
+      "end": 3.2,
+      "speaker": "X",
+      "kind": "speech",
+      "text": "分岔后的继续语音。"
+    }
+  ],
+  "active_spans_samples": [
+    [
+      6370,
+      9227
+    ],
+    [
+      9738,
+      13570
+    ],
+    [
+      16986,
+      33229
+    ],
+    [
+      43883,
+      47374
+    ],
+    [
+      48192,
+      51200
+    ]
+  ],
+  "scenario": "fork: late speech"
+}

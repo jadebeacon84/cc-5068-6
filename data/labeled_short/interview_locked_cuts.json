@@ -1,0 +1,27 @@
+{
+  "audio_file": "interview_dialogue.wav",
+  "sample_rate": 16000,
+  "locked": true,
+  "note": "已锁定采访切点；分析器只能报告冲突，不能移动。",
+  "cuts": [
+    {
+      "cut_id": "C-CORE-1",
+      "sample": 25320,
+      "note": "导演锁定的采访切点"
+    },
+    {
+      "cut_id": "C-PAD-1",
+      "sample": 40800,
+      "note": "位于边界扩展区"
+    },
+    {
+      "cut_id": "C-GAP",
+      "sample": 44840,
+      "note": "气口干净切点"
+    },
+    {
+      "cut_id": "C-CORE-LAST",
+      "sample": 164920
+    }
+  ]
+}

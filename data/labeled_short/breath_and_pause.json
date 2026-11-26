@@ -1,0 +1,67 @@
+{
+  "audio_file": "breath_and_pause.wav",
+  "sample_rate": 16000,
+  "duration_sec": 5.7508,
+  "annotator": "synthetic-reference (machine exact labels; human-reviewable)",
+  "segments": [
+    {
+      "start": 0.44,
+      "end": 2.014,
+      "scheduled_start": 0.285,
+      "speaker": "A",
+      "kind": "speech"
+    },
+    {
+      "start": 2.566,
+      "end": 4.354,
+      "scheduled_start": 2.377,
+      "speaker": "A",
+      "kind": "speech"
+    }
+  ],
+  "active_spans_samples": [
+    [
+      7045,
+      13657
+    ],
+    [
+      17576,
+      24363
+    ],
+    [
+      24904,
+      27712
+    ],
+    [
+      28885,
+      32227
+    ],
+    [
+      41057,
+      46891
+    ],
+    [
+      51317,
+      54539
+    ],
+    [
+      54561,
+      57184
+    ],
+    [
+      58794,
+      62771
+    ],
+    [
+      65800,
+      69066
+    ],
+    [
+      69473,
+      69656
+    ]
+  ],
+  "category": "breath_gaps",
+  "seed": 103,
+  "snr_db": null
+}
