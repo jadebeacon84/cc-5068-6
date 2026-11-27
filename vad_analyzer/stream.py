@@ -19,6 +19,7 @@ from typing import Optional
 import numpy as np
 
 from .features import FeatureStreamer
+from .runtime_onnx import InputClock
 from .segments import (EvidenceFSM, VadConfig, cores_to_intervals)
 
 
@@ -31,10 +32,13 @@ class StreamEvent:
     tentative_end_sec: Optional[float] = None
     tentative_end_sample: Optional[int] = None
     interval: Optional[dict] = None
+    clock_sample: Optional[int] = None
 
     def to_dict(self) -> dict:
         d = {"kind": self.kind, "time_sec": round(self.time_sec, 4),
              "sample": int(self.sample), "message": self.message}
+        if self.clock_sample is not None:
+            d["clock_sample"] = int(self.clock_sample)
         if self.tentative_end_sec is not None:
             d["tentative_end_sec"] = round(self.tentative_end_sec, 4)
             d["tentative_end_sample"] = int(self.tentative_end_sample)
@@ -45,16 +49,22 @@ class StreamEvent:
 
 class StreamingVad:
     def __init__(self, sample_rate: int, config: Optional[VadConfig] = None,
-                 detector=None) -> None:
+                 detector=None, clock: Optional[InputClock] = None) -> None:
         self.sr = sample_rate
         self.cfg = (config or VadConfig()).validated()
         self.fx = FeatureStreamer(sample_rate, frame_ms=self.cfg.frame_ms,
                                   hop_ms=self.cfg.hop_ms)
         self.win = self.fx.win
         self.hop = self.fx.hop
+        self.clock = clock or InputClock.file_zero(sample_rate, self.hop)
+        self.capture_origin_sample = int(self.clock.capture_origin_sample)
+        # The live mid-stride phase is compensated here on the feature side.
+        # Never add the same phase again when exporting or reporting samples.
+        self.lead_pad_samples = max(0, int(self.clock.phase_samples)) \
+            if self.clock.kind == "live_mid_stride" else 0
         self.fsm = EvidenceFSM(sample_rate, self.hop, self.cfg)
         self.detector = detector
-        self._buf = np.zeros(0, dtype=np.float32)
+        self._buf = np.zeros(self.lead_pad_samples, dtype=np.float32)
         self._fi = 0
         self._processed_samples = 0
         self.probs: list[float] = []
@@ -72,6 +82,19 @@ class StreamingVad:
     def _now(self, sample: int) -> float:
         return sample / float(self.sr)
 
+    def _frame_local_start(self, frame_index: int) -> int:
+        return int(frame_index) * self.hop - self.lead_pad_samples
+
+    def _clock_sample(self, local_sample: int) -> int:
+        return self.capture_origin_sample + int(local_sample)
+
+    def _emit_event(self, cls, **kwargs):
+        local_sample = kwargs.get("sample", 0)
+        kwargs["clock_sample"] = self._clock_sample(local_sample)
+        ev = StreamEvent(**kwargs)
+        self.events.append(ev)
+        return ev
+
     def _emit_close(self, core, at_sample: int, reason: str) -> Optional[StreamEvent]:
         probs = np.asarray(self.probs, dtype=np.float64)
         starts = np.asarray(self.start_samples, dtype=np.int64)
@@ -79,16 +102,20 @@ class StreamingVad:
                                  self._processed_samples, self.sr, self.cfg)
         if not ivs:
             ev = StreamEvent("short_dropped", self._now(at_sample), at_sample,
-                              "候选短于 min_speech_ms，已作为误触发丢弃。")
+                              "候选短于 min_speech_ms，已作为误触发丢弃。",
+                              clock_sample=self._clock_sample(at_sample))
             self.events.append(ev)
             return ev
         iv = ivs[0]
         iv.index = len(self.confirmed) + 1
         iv.source = "confirmed" if reason == "gap" else "eof_confirmed"
+        iv.clock_start_sample = self._clock_sample(iv.start_sample)
+        iv.clock_end_sample = self._clock_sample(iv.end_sample)
         self.confirmed.append(iv)
         ev = StreamEvent("segment_confirmed", self._now(at_sample), at_sample,
                          "间隙证据齐全，区间已确认，可归档切片。",
-                         interval=iv.to_dict())
+                         interval=iv.to_dict(),
+                         clock_sample=self._clock_sample(at_sample))
         self.events.append(ev)
         return ev
 
@@ -99,9 +126,10 @@ class StreamingVad:
         marker = self.fsm.add_frame(i, p)
 
         if marker == "start":
-            s = i * self.hop
+            s = self._frame_local_start(i)
             ev = StreamEvent("speech_started", self._now(s), s,
-                             "检测到进入证据，语音活动开始。")
+                             "检测到进入证据，语音活动开始。",
+                             clock_sample=self._clock_sample(s))
             self.events.append(ev)
             out.append(ev)
 
@@ -111,26 +139,31 @@ class StreamingVad:
         if was_open and was_provisional and marker != "start" \
                 and p >= self.cfg.enter_threshold and self.fsm.neg_run == 0:
             self.fsm.provisional_sent = False
+            s = self._frame_local_start(i)
             ev = StreamEvent(
-                "end_retracted", self._now(i * self.hop), i * self.hop,
-                "后续语音证据到达，撤回“可能结束”暂报，区间继续。")
+                "end_retracted", self._now(s), s,
+                "后续语音证据到达，撤回“可能结束”暂报，区间继续。",
+                clock_sample=self._clock_sample(s))
             self.events.append(ev)
             out.append(ev)
 
         if self.fsm.provisional_due():
             end_frame = self.fsm.alive
-            tend = min(self._processed_samples, end_frame * self.hop)
+            tend = min(self._processed_samples,
+                       self._frame_local_start(end_frame))
+            s = self._frame_local_start(i)
             ev = StreamEvent(
-                "provisional_end", self._now(i * self.hop), i * self.hop,
+                "provisional_end", self._now(s), s,
                 "短暂低证据：暂报可能结束，等待后续证据（可撤回）。",
-                tentative_end_sec=self._now(tend),
-                tentative_end_sample=int(tend))
+                tentative_end_sec=self._now(max(0, tend)),
+                tentative_end_sample=int(max(0, tend)),
+                clock_sample=self._clock_sample(s))
             self.events.append(ev)
             out.append(ev)
 
         if marker == "close":
             core = self.fsm.core()
-            ev = self._emit_close(core, i * self.hop, "gap")
+            ev = self._emit_close(core, self._frame_local_start(i), "gap")
             if ev is not None:
                 out.append(ev)
         return out
@@ -152,7 +185,7 @@ class StreamingVad:
             v = self.fx.process(frame)
             p = self._score(v)
             self.probs.append(p)
-            self.start_samples.append(self._fi * self.hop)
+            self.start_samples.append(self._frame_local_start(self._fi))
             out.extend(self._handle_prob(self._fi, p))
             self._fi += 1
         return out
@@ -165,7 +198,7 @@ class StreamingVad:
             v = self.fx.process(self._buf)  # zero-padded inside process()
             p = self._score(v)
             self.probs.append(p)
-            self.start_samples.append(self._fi * self.hop)
+            self.start_samples.append(self._frame_local_start(self._fi))
             out.extend(self._handle_prob(self._fi, p))
             self._fi += 1
             self._buf = np.zeros(0, dtype=np.float32)
@@ -176,7 +209,8 @@ class StreamingVad:
             if ev is not None:
                 out.append(ev)
         end_ev = StreamEvent("finished", self._now(self._processed_samples),
-                             self._processed_samples, "流式会话结束。")
+                             self._processed_samples, "流式会话结束。",
+                             clock_sample=self._clock_sample(self._processed_samples))
         self.events.append(end_ev)
         out.append(end_ev)
         self.finished = True

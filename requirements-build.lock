@@ -1,0 +1,8 @@
+# Build-only lock for regenerating local_logistic_v1.onnx.
+# Runtime deployments need requirements.lock, not this file.
+# Generated as a full fresh-target freeze for Python 3.11.
+ml_dtypes==0.7.0
+numpy==2.4.6
+onnx==1.19.1
+protobuf==7.36.2
+typing_extensions==4.16.0

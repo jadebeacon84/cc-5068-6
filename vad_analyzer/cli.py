@@ -58,6 +58,17 @@ def _build_parser() -> argparse.ArgumentParser:
 
     d = sub.add_parser("demo", help="运行分岔/锁点/导出核验自检场景")
     d.add_argument("--out-dir", default=str(WORKSPACE / "exports" / "demo"))
+
+    r = sub.add_parser(
+        "runtime-check",
+        help="核验 ONNX Runtime 迁移、时间映射、块大小契约和字头回读")
+    r.add_argument("--json-out",
+                   default=str(WORKSPACE / "reports" /
+                               "runtime_migration_evidence.json"))
+    r.add_argument("--head-dir",
+                   default=str(WORKSPACE / "exports" / "runtime_migration"))
+    r.add_argument("--no-validation", action="store_true",
+                   help="跳过 validation 集阈值扫描，仅做样本级核验")
     return p
 
 
@@ -164,6 +175,20 @@ def _json_default(o):
     if hasattr(o, "item"):
         return o.item()
     return str(o)
+
+
+def _cmd_runtime_check(args) -> int:
+    from .migration_evidence import collect_evidence
+    report = collect_evidence(
+        args.json_out, args.head_dir, run_validation=not args.no_validation)
+    head = report["editor_head_readback"]["verification"]["verified"]
+    contracts = all(m["block_contract"]["all_match_offline"]
+                    for m in report["materials"])
+    print(f"[runtime] {report['runtime']['backend']}")
+    print(f"[head-readback] verified={head}")
+    print(f"[block-contracts] all_match={contracts} blocks=256,512")
+    print(f"[json] {args.json_out}")
+    return 0 if head and contracts else 1
 
 
 def _cmd_gui(_args) -> int:
@@ -283,6 +308,8 @@ def main(argv: Optional[list[str]] = None) -> int:
             return _cmd_evaluate(args)
         if args.command == "demo":
             return _cmd_demo(args)
+        if args.command == "runtime-check":
+            return _cmd_runtime_check(args)
         parser.error(f"未知命令 {args.command}")
         return 2
     except VadError as e:

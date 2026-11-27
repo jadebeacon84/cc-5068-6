@@ -1,5 +1,9 @@
 # Core dependency (frame features + local logistic model + metrics)
-numpy>=1.24
+numpy>=1.24,<3
+
+# Migrated inference runtime. Keep this in sync with requirements.lock and
+# PINNED_RUNTIME_VERSION in vad_analyzer/runtime_onnx.py.
+onnxruntime==1.23.2
 
 # GUI needs Tk. On Debian/Ubuntu the interpreter binding is a system package:
 #   sudo apt install python3-tk

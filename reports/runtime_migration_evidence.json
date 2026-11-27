@@ -1,0 +1,453 @@
+{
+  "schema": "vad-runtime-migration-evidence-v1",
+  "runtime": {
+    "name": "onnxruntime",
+    "installed_version": "1.23.2",
+    "pinned_version": "1.23.2",
+    "python": "3.11.2",
+    "platform": "Linux-7.0.14-linuxkit-aarch64-with-glibc2.36",
+    "backend": "onnxruntime-1.23.2:onnx-frame-start-v1:local-logistic-v1:local_logistic_v1.onnx@sha256:f148ad63d1c6",
+    "identity": {
+      "runtime": "onnxruntime",
+      "runtime_version": "1.23.2",
+      "pinned_runtime_version": "1.23.2",
+      "contract_version": "onnx-frame-start-v1",
+      "model_identity": "local-logistic-v1",
+      "model_file": "local_logistic_v1.onnx",
+      "model_sha256": "f148ad63d1c663fadada3153390b1fb977042f2bda796278224747eabaa543a6",
+      "weights_file": "model_weights.json",
+      "weights_sha256": "27a444172192beb36c9a0d7505bdcd4cc9a5f47e391498f1da5af564aec0e53d",
+      "source_weights_sha256_in_graph": "27a444172192beb36c9a0d7505bdcd4cc9a5f47e391498f1da5af564aec0e53d",
+      "feature_layout": "raw_features[N,13]float32",
+      "normalization": "baked_in_graph_source_mean_std",
+      "output_timing": "frame_start",
+      "threshold": 0.375,
+      "providers": [
+        "CPUExecutionProvider"
+      ]
+    }
+  },
+  "old_to_new_time_contract": {
+    "legacy_frame_timestamp": "center=i*hop+win//2",
+    "migrated_output_timestamp": "start=i*hop",
+    "mapping": "new_start=old_center-win//2=i*hop",
+    "selected_live_compensation": "feature_side_preroll_once",
+    "editor_offset_policy": "use interval.start_sample directly; do not apply AlignmentLedger twice"
+  },
+  "materials": [
+    {
+      "file": "data/labeled_short/short_clean_A.wav",
+      "sample_rate": 16000,
+      "samples": 132386,
+      "duration_sec": 8.274,
+      "inference_error": {
+        "comparable": true,
+        "threshold": 0.375,
+        "n_frames": 828,
+        "max_abs_error": 1.1813065492471964e-07,
+        "mean_abs_error": 2.1435571989614165e-08,
+        "first_active_frame_onnx": 46,
+        "first_active_frame_reference": 46,
+        "first_active_matches": true,
+        "active_frame_count_onnx": 297,
+        "active_frame_count_reference": 297,
+        "active_counts_match": true
+      },
+      "block_contract": {
+        "block_sizes": [
+          256,
+          512
+        ],
+        "all_match_offline": true,
+        "matches": {
+          "256": true,
+          "512": true
+        },
+        "intervals": [
+          {
+            "start_sample": 5920,
+            "end_sample": 70640,
+            "core_start_sample": 7360,
+            "core_end_sample": 69200
+          }
+        ]
+      }
+    },
+    {
+      "file": "data/labeled_short/interview_dialogue.wav",
+      "sample_rate": 16000,
+      "samples": 179200,
+      "duration_sec": 11.2,
+      "inference_error": {
+        "comparable": true,
+        "threshold": 0.375,
+        "n_frames": 1120,
+        "max_abs_error": 1.8632030818199752e-07,
+        "mean_abs_error": 3.876395321839718e-08,
+        "first_active_frame_onnx": 66,
+        "first_active_frame_reference": 66,
+        "first_active_matches": true,
+        "active_frame_count_onnx": 612,
+        "active_frame_count_reference": 612,
+        "active_counts_match": true
+      },
+      "block_contract": {
+        "block_sizes": [
+          256,
+          512
+        ],
+        "all_match_offline": true,
+        "matches": {
+          "256": true,
+          "512": true
+        },
+        "intervals": [
+          {
+            "start_sample": 9120,
+            "end_sample": 41520,
+            "core_start_sample": 10560,
+            "core_end_sample": 40080
+          },
+          {
+            "start_sample": 48160,
+            "end_sample": 146000,
+            "core_start_sample": 49600,
+            "core_end_sample": 142640
+          },
+          {
+            "start_sample": 150560,
+            "end_sample": 179200,
+            "core_start_sample": 152000,
+            "core_end_sample": 177840
+          }
+        ]
+      }
+    },
+    {
+      "file": "data/labeled_short/low_snr_case.wav",
+      "sample_rate": 16000,
+      "samples": 125668,
+      "duration_sec": 7.854,
+      "inference_error": {
+        "comparable": true,
+        "threshold": 0.375,
+        "n_frames": 786,
+        "max_abs_error": 2.2575747798958545e-07,
+        "mean_abs_error": 4.49928570498142e-08,
+        "first_active_frame_onnx": 45,
+        "first_active_frame_reference": 45,
+        "first_active_matches": true,
+        "active_frame_count_onnx": 432,
+        "active_frame_count_reference": 432,
+        "active_counts_match": true
+      },
+      "block_contract": {
+        "block_sizes": [
+          256,
+          512
+        ],
+        "all_match_offline": true,
+        "matches": {
+          "256": true,
+          "512": true
+        },
+        "intervals": [
+          {
+            "start_sample": 5760,
+            "end_sample": 81200,
+            "core_start_sample": 7200,
+            "core_end_sample": 77520
+          },
+          {
+            "start_sample": 90880,
+            "end_sample": 117680,
+            "core_start_sample": 92320,
+            "core_end_sample": 114000
+          }
+        ]
+      }
+    },
+    {
+      "file": "data/labeled_short/wind_only.wav",
+      "sample_rate": 16000,
+      "samples": 134874,
+      "duration_sec": 8.43,
+      "inference_error": {
+        "comparable": true,
+        "threshold": 0.375,
+        "n_frames": 843,
+        "max_abs_error": 1.6732645918837719e-07,
+        "mean_abs_error": 2.5976858501764573e-08,
+        "first_active_frame_onnx": 782,
+        "first_active_frame_reference": 782,
+        "first_active_matches": true,
+        "active_frame_count_onnx": 3,
+        "active_frame_count_reference": 3,
+        "active_counts_match": true
+      },
+      "block_contract": {
+        "block_sizes": [
+          256,
+          512
+        ],
+        "all_match_offline": true,
+        "matches": {
+          "256": true,
+          "512": true
+        },
+        "intervals": []
+      }
+    },
+    {
+      "file": "data/labeled_short/keyboard_only.wav",
+      "sample_rate": 16000,
+      "samples": 113506,
+      "duration_sec": 7.094,
+      "inference_error": {
+        "comparable": true,
+        "threshold": 0.375,
+        "n_frames": 710,
+        "max_abs_error": 1.8819020258797892e-07,
+        "mean_abs_error": 3.6899793488747305e-08,
+        "first_active_frame_onnx": 17,
+        "first_active_frame_reference": 17,
+        "first_active_matches": true,
+        "active_frame_count_onnx": 72,
+        "active_frame_count_reference": 72,
+        "active_counts_match": true
+      },
+      "block_contract": {
+        "block_sizes": [
+          256,
+          512
+        ],
+        "all_match_offline": true,
+        "matches": {
+          "256": true,
+          "512": true
+        },
+        "intervals": []
+      }
+    },
+    {
+      "file": "data/labeled_short/music_only.wav",
+      "sample_rate": 16000,
+      "samples": 126784,
+      "duration_sec": 7.924,
+      "inference_error": {
+        "comparable": true,
+        "threshold": 0.375,
+        "n_frames": 793,
+        "max_abs_error": 1.5087478677511257e-07,
+        "mean_abs_error": 3.76135746220228e-08,
+        "first_active_frame_onnx": 15,
+        "first_active_frame_reference": 15,
+        "first_active_matches": true,
+        "active_frame_count_onnx": 208,
+        "active_frame_count_reference": 208,
+        "active_counts_match": true
+      },
+      "block_contract": {
+        "block_sizes": [
+          256,
+          512
+        ],
+        "all_match_offline": true,
+        "matches": {
+          "256": true,
+          "512": true
+        },
+        "intervals": []
+      }
+    }
+  ],
+  "generated_materials": {
+    "low_volume_gain": 0.12,
+    "low_volume_peak_int16": 2217,
+    "low_volume_inference_error": {
+      "comparable": true,
+      "threshold": 0.375,
+      "n_frames": 828,
+      "max_abs_error": 1.2738565569048177e-07,
+      "mean_abs_error": 2.3309026305831296e-08,
+      "first_active_frame_onnx": 46,
+      "first_active_frame_reference": 46,
+      "first_active_matches": true,
+      "active_frame_count_onnx": 296,
+      "active_frame_count_reference": 296,
+      "active_counts_match": true
+    },
+    "low_volume_all_block_sizes_match": true,
+    "low_volume_intervals": [
+      {
+        "start_sample": 5920,
+        "end_sample": 70640,
+        "core_start_sample": 7360,
+        "core_end_sample": 69200
+      }
+    ],
+    "partial_samples": 80000,
+    "partial_mod_256": 128,
+    "partial_mod_512": 128,
+    "partial_all_block_sizes_match": true,
+    "partial_intervals": [
+      {
+        "start_sample": 5920,
+        "end_sample": 70640,
+        "core_start_sample": 7360,
+        "core_end_sample": 69200
+      }
+    ],
+    "data_modification": "generated in memory; no data file was edited"
+  },
+  "editor_head_readback": {
+    "path": "/workspace/exports/runtime_migration/clip_01_0.370-4.415.wav",
+    "interval": {
+      "index": 1,
+      "start_sec": 0.37,
+      "end_sec": 4.415,
+      "duration_sec": 4.045,
+      "start_sample": 5920,
+      "end_sample": 70640,
+      "core_start_sec": 0.46,
+      "core_end_sec": 4.325,
+      "core_start_sample": 7360,
+      "core_end_sample": 69200,
+      "confidence": 0.7383,
+      "confidence_low": 0.0001,
+      "confidence_level": "medium",
+      "strong_frame_ratio": 0.767,
+      "bridged_gaps": 3,
+      "label": "voice_activity",
+      "speaker": null,
+      "source": "confirmed"
+    },
+    "verification": {
+      "path": "/workspace/exports/runtime_migration/clip_01_0.370-4.415.wav",
+      "requested_start_sample": 5920,
+      "requested_end_sample": 70640,
+      "sample_rate": 16000,
+      "expected_sample_count": 64720,
+      "actual_sample_count": 64720,
+      "length_match": true,
+      "all_samples_match": true,
+      "first_sample_expected": 0,
+      "first_sample_actual": 0,
+      "last_sample_expected": 0,
+      "last_sample_actual": 0,
+      "edges_match": true,
+      "sha256_source_slice": "ae987d3eff7828998da244d2f71577ca3f6b217acd274cbaeacb94e3ea1bc646",
+      "sha256_exported_file": "764d3f609833ac2e6b07a3e540facd003798ca3b8cd42a34d13302ed1c6d6b68",
+      "verified": true
+    }
+  },
+  "playback": {
+    "detected_backend": "unavailable",
+    "available": false,
+    "acoustic_playback_executed": false,
+    "note": "Evidence collector never claims listening success in a container without /dev/snd. GUI/player path should be checked on a desktop or PulseAudio/PipeWire session."
+  },
+  "threshold_example_check": [
+    {
+      "enter_threshold": 0.3,
+      "exit_threshold": 0.14,
+      "n_intervals": 2,
+      "interval_samples": 165360,
+      "missed_regions": 0,
+      "missed_samples": 0,
+      "missed_sec": 0.0,
+      "frame_metrics": {
+        "tp": 533,
+        "fp": 119,
+        "fn": 73,
+        "tn": 395,
+        "accuracy": 0.8286,
+        "speech_frame_miss_rate": 0.1205,
+        "speech_frame_recall": 0.8795,
+        "nonspeech_false_positive_rate": 0.2315,
+        "silence_frame_ratio": 0.4589
+      }
+    },
+    {
+      "enter_threshold": 0.375,
+      "exit_threshold": 0.215,
+      "n_intervals": 3,
+      "interval_samples": 158880,
+      "missed_regions": 0,
+      "missed_samples": 0,
+      "missed_sec": 0.0,
+      "frame_metrics": {
+        "tp": 517,
+        "fp": 95,
+        "fn": 89,
+        "tn": 419,
+        "accuracy": 0.8357,
+        "speech_frame_miss_rate": 0.1469,
+        "speech_frame_recall": 0.8531,
+        "nonspeech_false_positive_rate": 0.1848,
+        "silence_frame_ratio": 0.4589
+      }
+    },
+    {
+      "enter_threshold": 0.45,
+      "exit_threshold": 0.29,
+      "n_intervals": 3,
+      "interval_samples": 152080,
+      "missed_regions": 0,
+      "missed_samples": 0,
+      "missed_sec": 0.0,
+      "frame_metrics": {
+        "tp": 499,
+        "fp": 79,
+        "fn": 107,
+        "tn": 435,
+        "accuracy": 0.8339,
+        "speech_frame_miss_rate": 0.1766,
+        "speech_frame_recall": 0.8234,
+        "nonspeech_false_positive_rate": 0.1537,
+        "silence_frame_ratio": 0.4589
+      }
+    }
+  ],
+  "threshold_validation": [
+    {
+      "enter_threshold": 0.325,
+      "exit_threshold": 0.165,
+      "n_clips": 54,
+      "pooled_voice_miss_rate": 0.0,
+      "false_trigger_sec_per_minute": 14.28,
+      "frame_speech_miss_rate": 0.0329,
+      "frame_nonspeech_fpr": 0.1896,
+      "event_recall": 0.442,
+      "event_precision": 0.559,
+      "event_f1": 0.494,
+      "coverage_event_recall": 1.0
+    },
+    {
+      "enter_threshold": 0.375,
+      "exit_threshold": 0.215,
+      "n_clips": 54,
+      "pooled_voice_miss_rate": 0.0,
+      "false_trigger_sec_per_minute": 6.99,
+      "frame_speech_miss_rate": 0.046,
+      "frame_nonspeech_fpr": 0.1557,
+      "event_recall": 0.5,
+      "event_precision": 0.672,
+      "event_f1": 0.573,
+      "coverage_event_recall": 1.0
+    },
+    {
+      "enter_threshold": 0.425,
+      "exit_threshold": 0.265,
+      "n_clips": 54,
+      "pooled_voice_miss_rate": 0.0,
+      "false_trigger_sec_per_minute": 6.57,
+      "frame_speech_miss_rate": 0.0593,
+      "frame_nonspeech_fpr": 0.1271,
+      "event_recall": 0.512,
+      "event_precision": 0.677,
+      "event_f1": 0.583,
+      "coverage_event_recall": 1.0
+    }
+  ]
+}

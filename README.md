@@ -4,7 +4,8 @@
 它从录音中判断**哪里存在语音活动**，输出采样级精确的时间范围、置信信息，
 并能导出可审听、经逐样本核验的 WAV 片段。
 
-- 模型与规则全部在**本机用 numpy 真实计算**，没有伪造的执行链、没有联网推理。
+- 模型与规则全部在**本机真实执行**：默认走 ONNX Runtime CPU 推理，并保留
+  NumPy 参考实现做身份与误差对照；没有伪造的执行链、没有联网推理。
 - **帧级判定**（`detector.py` / `features.py` / `model.py`）与**区间合并**
   （`segments.py` / `stream.py`）严格分离。
 - 明确区分“有声音 / 语音样活动判定”与“确认是人在说话”：本工具输出的是
@@ -93,13 +94,12 @@ python3 -m vad_analyzer evaluate --eval-dir data/eval --out reports
 ## 3. 快速验证（测试）
 
 ```bash
-bash run_tests.sh          # 纯逻辑 / 音频 / 指标 / 场景，28 项
+bash run_tests.sh          # 纯逻辑 / 音频 / 指标 / 场景，38 项
 DISPLAY=:99 bash run_tests.sh --gui   # 额外执行真实 Tk GUI 冒烟
 ```
 
-当前共 **29 个测试全部通过**（不带 `--gui` 时 GUI 用例 skip）。
-测试覆盖：区间合并语义、实时撤回、导出全样本核验、标注差集与指标、
-锁定切点不可变、分岔 A/B 场景、三类干扰零误区间、GUI 真实加载重算。
+当前共 **38 个测试**：不带 `--gui` 时 37 项通过、1 个 GUI 用例 skip；
+带 `DISPLAY` 与 `VAD_TEST_GUI=1` 时 GUI 用例真实创建 Tk 窗口。测试覆盖区间合并语义、实时撤回、导出全样本核验、标注差集与指标、锁定切点不可变、分岔 A/B 场景、三类干扰零误区间，以及 ONNX Runtime 迁移的时间/块大小契约。
 
 ---
 
@@ -109,8 +109,9 @@ DISPLAY=:99 bash run_tests.sh --gui   # 额外执行真实 Tk GUI 冒烟
 WAV(int16/mono)
   └─ audio.load_wav                标准库 wave，规范成 mono int16，分析转 float32
       └─ features                  25ms 窗 / 10ms hop，13 维声学特征
-          └─ model.LocalModel      本地 numpy 逻辑回归（model_weights.json）
-              或 HeuristicScorer   权重缺失时的规则兜底
+          └─ runtime_onnx         默认 ONNX Runtime 1.23.2 CPU 后端
+              └─ local_logistic_v1.onnx  由固定 JSON 权重导出，图内归一
+          └─ model.LocalModel      锁定的 NumPy 参考实现 / 身份与误差对照
           └─ detector.FrameDetector   逐帧概率 + 原始二值判定（帧级，独立）
               ├─ segments.merge_probabilities  离线区间合并（区间级，独立）
               └─ stream.StreamingVad           实时事件：暂报/撤回/确认
@@ -134,6 +135,73 @@ WAV(int16/mono)
 | `tests/` | unittest 测试 |
 | `run_gui.sh` `run_tests.sh` | 注入本地 numpy / Tk 兜底路径的运行脚本 |
 | `.extradeps/` `.pydeps/` | 无 root 环境下的本地 Tk / Python 依赖兜底（可删后用系统包替代） |
+| `local_logistic_v1.onnx` | 固定逻辑回归模型的 ONNX Runtime 工件（opset 17 / IR 10） |
+| `requirements.lock` `requirements-build.lock` | 运行时与 ONNX 重建依赖的精确版本锁 |
+
+### 4.1 推理运行时迁移、特征布局与输出时间契约
+
+默认帧后端已经从直接调用 NumPy 权重切到 **ONNX Runtime CPU**：
+
+- 运行时版本：`onnxruntime==1.23.2`（见 `requirements.txt` / `requirements.lock`，
+  代码常量 `PINNED_RUNTIME_VERSION`）。
+- 迁移契约：`onnx-frame-start-v1`；后端串形如
+  `onnxruntime-1.23.2:onnx-frame-start-v1:local-logistic-v1:...@sha256:...`。
+- 固定模型身份：仍是 `local-logistic-v1`。ONNX 元数据写入源
+  `model_weights.json` 的 SHA-256；`OnnxLogisticRuntime` 启动时会核对哈希。
+  当前工件与权重哈希、概率误差见
+  `reports/runtime_migration_evidence.json`。
+- 特征布局：输入名 `raw_features`，形状必须是 `[N,13] float32`，列顺序固定为
+  `FEATURE_NAMES`。源均值/标准差归一化与 sigmoid 已烘进 ONNX 图，适配器不会
+  再做第二次归一化。
+- 输出时间：新后端契约是**帧起点** `start=i*hop`。旧声学窗中心为
+  `center=i*hop+win//2`，因此时间映射固定为
+  `new_start = old_center - win//2 = i*hop`，不能把中心时间直接当起点。
+
+两种输入钟：
+
+1. **普通文件**：`InputClock.file_zero(sr, hop)`，采集原点和相位都是 0，
+   数组样本 0 即文件头。
+2. **直播片段**：`InputClock.live_mid_stride(sr, capture_origin_sample, hop)`。
+   首个采集样本位于步长中间，相位为 `hop//2`；事件/区间上的
+   `clock_sample` / `clock_start_sample` 沿用采集钟绝对样本号。
+
+对齐补偿只允许有一个属主。当前直播实现选择**特征端补一次前置相位样本**
+（`StreamingVad(clock=...)` 内部预滚 `hop//2` 个零），因此
+`start_samples` 已经是源文件/本地剪辑坐标；导出器直接使用
+`interval.start_sample`，**不能再叠加** `AlignmentLedger` 的偏移。
+另一种 `output_trim` 方案只在 `make_alignment(..., "output_trim")` 中保留契约，
+并由 `AlignmentLedger.__post_init__` 禁止特征端和输出端同时补偿。导出后会重新
+用 `wave` 读回第一个样本，校验它等于
+`source.samples[interval.start_sample]`，防止双方各补一次造成字头双倍偏移。
+
+块大小契约核查 **256 与 512 样本两种块**（也可传入任意正块大小）：
+`VoiceIntervalKernel.block_contract()` 逐区间比较离线路径和分块流式路径的
+`[start,end,core_start,core_end]`。固定短语音、对白、低 SNR、风噪、键盘、音乐，
+以及内存生成的低音量（gain=0.12）和非整块截断材料均已核查；256/512 结果与离线
+完全一致。运行：
+
+```bash
+python3 -m vad_analyzer runtime-check
+# 只做样本/块/字头核验，不跑 validation 阈值扫描：
+python3 -m vad_analyzer runtime-check --no-validation
+
+# 精简容器若依赖装在 ./.pydeps：
+PYTHONPATH=.pydeps python3 -m vad_analyzer runtime-check --no-validation
+```
+
+阈值没有因数值等价转换而改动：ONNX 与 NumPy 的最大概率误差约 `2.3e-7`，
+首激活帧和激活帧数一致，所以默认仍为 `enter=0.375`、`exit=0.215`。若以后调整
+阈值，不能只比较标签数量；`runtime_migration_evidence.json` 同时记录
+validation 集的语音漏检率、误触发秒/分钟、帧漏检/FPR、事件 P/R/F1 与 coverage。
+本次扫描中 0.375 相对 0.325 明显降低误触发，相对 0.425 保持更低语音漏检，
+因此默认值不变。
+
+图形窗口仍由 `VoiceIntervalKernel.recompute()` 驱动活动区间和漏检片段；
+滑杆只重合并缓存概率，不重算特征。界面启动方式见第 1 节。无头环境可用
+`Xvfb :99 ...` 后设置 `DISPLAY=:99` 运行真实 Tk 冒烟。容器没有 `/dev/snd`
+时不能声称肉耳验听；本次用真实 `aplay` 进程接 ALSA `null` PCM 验证了 GUI
+播放调用、WAV 落地和进程返回码，证据为
+`reports/gui_threshold_playback_evidence.json`。
 
 ---
 

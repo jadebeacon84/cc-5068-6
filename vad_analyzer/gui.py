@@ -24,15 +24,15 @@ import tkinter as tk  # noqa: E402
 from tkinter import filedialog, ttk  # noqa: E402
 
 from .audio import AudioPlayer, load_wav  # noqa: E402
-from .cuts import evaluate_locked_cuts, load_locked_cuts  # noqa: E402
+from .cuts import load_locked_cuts  # noqa: E402
 from .detector import FrameDetector, labels_for_frames  # noqa: E402
 from .errors import VadError  # noqa: E402
 from .evaluate import frame_confusion  # noqa: E402
 from .exporter import export_interval  # noqa: E402
-from .labels import (find_sidecar, load_annotation,  # noqa: E402
-                     reference_sample_spans, subtract_detected)
-from .pipeline import config_for  # noqa: E402
-from .segments import merge_decision  # noqa: E402
+from .kernel import VoiceIntervalKernel  # noqa: E402
+from .labels import (find_sidecar, load_annotation,
+                     reference_sample_spans)
+from .pipeline import config_for
 
 EXAMPLE_WAV = WORKSPACE / "data" / "labeled_short" / "interview_dialogue.wav"
 EXAMPLE_CUTS = WORKSPACE / "data" / "labeled_short" / "interview_locked_cuts.json"
@@ -70,6 +70,7 @@ class VadApp:
 
         self.detector = FrameDetector()
         self.cfg = config_for(self.detector)
+        self.kernel = VoiceIntervalKernel(self.detector, self.cfg)
         self.player = AudioPlayer()
 
         self.audio = None
@@ -358,7 +359,7 @@ class VadApp:
             return
         self.status_var.set("本地模型分析中…")
         self.root.update_idletasks()
-        self.decision = self.detector.detect(self.audio)
+        self.decision = self.kernel.detect(self.audio)
         self._log(f"分析完成：{self.audio.path.name if self.audio.path else 'audio'} "
                   f"backend={self.decision.backend} frames={len(self.decision.probs)}")
         self.recompute()
@@ -391,17 +392,12 @@ class VadApp:
         if self.decision is None:
             return
         self.cfg = self._read_config()
-        self.intervals = merge_decision(self.decision, self.cfg)
-        sr = self.audio.sample_rate
-        if self.annotation is not None:
-            refs = reference_sample_spans(self.annotation, sr)
-            self.missed = subtract_detected(refs, self.intervals, min_ms=120)
-        else:
-            self.missed = []
-        if self.cuts:
-            self.conflicts = evaluate_locked_cuts(self.cuts, self.intervals)
-        else:
-            self.conflicts = []
+        result = self.kernel.recompute(
+            self.audio, self.decision, self.cfg,
+            self.annotation, self.cuts)
+        self.intervals = result.intervals
+        self.missed = result.missed
+        self.conflicts = result.conflicts
         self._refresh_interval_tree()
         self._refresh_miss_tree()
         self._refresh_conflict_tree()
@@ -689,9 +685,7 @@ class VadApp:
         try:
             self.cuts = load_locked_cuts(path, self.audio.sample_rate)
             self.cuts_path = Path(path)
-            self.conflicts = evaluate_locked_cuts(self.cuts, self.intervals)
-            self._refresh_conflict_tree()
-            self._draw()
+            self.recompute()
             self.status_var.set(f"已载入 {len(self.cuts)} 个锁定切点（不会移动）")
         except Exception as e:
             self._fail(f"锁定切点载入失败：{type(e).__name__}: {e}")

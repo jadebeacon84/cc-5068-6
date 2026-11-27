@@ -83,6 +83,8 @@ class Interval:
     speaker: Optional[str] = None
     source: str = "confirmed"
     notes: str = ""
+    clock_start_sample: Optional[int] = None
+    clock_end_sample: Optional[int] = None
 
     @property
     def start(self) -> float:
@@ -135,6 +137,9 @@ class Interval:
         }
         if self.notes:
             d["notes"] = self.notes
+        if self.clock_start_sample is not None:
+            d["clock_start_sample"] = int(self.clock_start_sample)
+            d["clock_end_sample"] = int(self.clock_end_sample)
         return d
 
 
